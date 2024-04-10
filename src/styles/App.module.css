@@ -1,0 +1,17 @@
+.btnGreen{
+  width: 100px;
+  background-color: green;
+  border-radius: 5px;
+  padding: 8px 10px;
+  color: white;
+  text-align: center;
+}
+
+.btnRed{
+  width: 100px;
+  background-color: red;
+  border-radius: 5px;
+  padding: 8px 10px;
+  color: white;
+  text-align: center;
+}
