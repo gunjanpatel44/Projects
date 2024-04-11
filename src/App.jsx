@@ -1,30 +1,51 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { TodoItemsContext } from './store/todo-items-store'
 import './App.css';
 import AddData from './components/AddData';
 import ListData from './components/ListData';
 import BharatClock from './components/BharatClock';
 
+// import { useState }  from 'react';
+
 function App() {
-  const [data, setData] = useState([]); // State to hold the data
 
-  // Function to handle data update
+  // using useContext
+  const [contextData, setContextData] = useState([]); // State to hold the data using usestate in context api
+
   const handleAddData = (newItem) => {
-    const updatedData = [...data, newItem];
-    setData(updatedData);
+    const updatedData = [...contextData, newItem];
+    setContextData(updatedData);
+
+    // using useState
+    // const [data, setData] = useState([]); // State to hold the data
+    // const updatedData = [...data, newItem];
+    // setData(updatedData);
   };
 
-  // Function to handle remove data
   const handleRemoveData = (id) => {
-    setData(data.filter(item => item.id !== id));
+    // using useContext
+    setContextData(contextData.filter(item => item.id !== id));
+
+    // using useState
+    // setData(data.filter(item => item.id !== id));
   };
+
 
   return (
     <div className='flex flex-col'>
       <BharatClock />
       <p className='font-bold text-2xl py-2'>To Do App</p>
       <div className='border border-black p-4 table'>
-        <AddData handleAddData={handleAddData} />
-        <ListData data={data} handleRemoveData={handleRemoveData} />
+        <TodoItemsContext.Provider value={
+          {
+            contextData: contextData,
+            handleAddData: handleAddData,
+            handleRemoveData: handleRemoveData
+          }
+        }>
+        <AddData />
+        <ListData />
+        </TodoItemsContext.Provider>
       </div>
     </div>
   )

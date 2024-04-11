@@ -5,3 +5,9 @@
   align-items: center;
   margin: 0 auto;
 }
+
+.table-headers{
+  font-size: large;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
